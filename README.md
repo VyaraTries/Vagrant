@@ -27,9 +27,9 @@ This should show you one file, Vagrantfile. This file was created by Vagrant whe
 
                         ls /vagrant
 
-####################                        
+
 Install Apache
-####################
+
 Remaining inside the VM, let’s list all the packages that are installed:
 
 
@@ -68,10 +68,10 @@ Now let’s make a test request using the curl program. We’ll connect to local
 
                         curl -v localhost:80
 
-####################
+
 Set up networking for our VM
 To access our web server from outside the VM, we’ll need to give the VM an IP address that we can reach from outside the VM
-####################
+
 
 Inside the SSH session, type:
 
@@ -84,7 +84,7 @@ The lines labelled with “inet” are actually the IP addresses. In this exampl
 
 10.0.2.15 (ignore the bit after the / for now). This is the machine’s IP address that it uses to identify itself to the network. We can use this to access it from our host computer.
 
-#######
+
 I tried the IP address but it’s ‘NAT’ working…
 By default, VirtualBox configures your virtual machine with a network configuration called Network Address Translation (NAT).
 
@@ -95,13 +95,13 @@ NAT is a way to connect computers to a network, so that a machine can “see out
 So, we need to change the network configuration, so that the machine is reachable.
 
 Using DHCP instead
-#######
 
 
-####################
+
+
 Configuring the VM’s network connection
 Set the virtual machine’s IP address with DHCP
-####################
+
 
 Exit the virtual machine so you’re back at your terminal (or Windows command prompt).
 Find the file myproject/Vagrantfile, and add this line to set the network configuration to DHCP:
@@ -119,18 +119,18 @@ Now if you re-run the IP addr command, a new network interface has appeared!
 
 This is like another virtual network connection, and it contains our VM’s IP address:
 
-###############
+
 Test the network setup
-###############
+
 
 Access the website from a web browser
 Open a browser and go to http://IP_ADDRESS (e.g. for my example it would be http://172.28.128.3):
 You’re accessing a web server, running inside a Linux virtual machine, on your laptop.
 
 
-#############
+
 Add some website content
-#############
+
 Edit the default home page
 
 Use a text editor to edit the website home page
@@ -148,9 +148,9 @@ Now open the file with nano:
 Now change a part of the HTML.
 Add a few words somewhere, edit the header, swap one of the images… it’s up to you. Make a change where you’ll notice it – perhaps in the title tag or the main header.
 
-###############
+
 Replace the default website
-###############
+
 Now we want to replace the default web site content with our actual website.
 We can copy some files into the virtual machine with Vagrant.
 With Vagrant, whenever you start a virtual machine with vagrant up it automatically syncs the contents of the current directory into a directory called /vagrant on the virtual machine.
@@ -174,9 +174,8 @@ This will copy the contents of webcontent into the html directory.
 
 Now reload your web browser again. The web server now shows our web site, instead of the default page!
 
-###############
 Automate our work
-###############
+
 Instead of relying on manual work, let’s automate everything. Whenever the virtual machine is created, we want to automatically install Apache HTTP Server and copy the website files.
 This is done with a process called provisioning.
 
